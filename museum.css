@@ -1,0 +1,123 @@
+:root {
+  color-scheme: dark;
+  --ink: #f3f2ed;
+  --soft: #d7d9e2;
+  --accent: #b4d0f3;
+  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  background: #121319;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; overscroll-behavior: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; color: inherit; touch-action: manipulation; }
+button:focus-visible, a:focus-visible, canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+#museum, #view { width: 100%; height: 100vh; height: 100svh; }
+#museum { position: relative; overflow: hidden; isolation: isolate; color: var(--ink); background: #161823; }
+#view { display: block; touch-action: none; cursor: grab; }
+#view:active { cursor: grabbing; }
+.mast {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: max(12px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) 12px max(18px, env(safe-area-inset-left));
+  background: linear-gradient(#1011179e, transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+.mast > * { pointer-events: auto; }
+.wordmark { color: var(--ink); text-decoration: none; font-size: .88rem; font-weight: 600; }
+.settings { display: flex; gap: 8px; }
+.settings button, .rooms button {
+  min-height: 44px;
+  padding: 0 10px;
+  border: 0;
+  color: var(--soft);
+  background: transparent;
+  white-space: nowrap;
+  font-size: .875rem;
+}
+.settings button { background: #12141bd9; border-bottom: 1px solid #ffffff25; }
+.settings button[aria-pressed="true"] { color: #e1ecfc; border-bottom-color: var(--accent); }
+.entry {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  justify-content: start;
+  align-content: end;
+  justify-items: start;
+  padding: 68px clamp(24px, 6vw, 96px) clamp(34px, 11vh, 120px);
+  background: linear-gradient(25deg, #17141ee5, transparent 68%);
+  pointer-events: none;
+}
+.entry > * { pointer-events: auto; }
+h1 { margin: 0 0 22px; font-size: clamp(2rem, 5.4vw, 5.5rem); line-height: .99; font-weight: 550; letter-spacing: -.055em; }
+#enter { padding: 12px 14px; min-height: 44px; border: 0; background: var(--ink); color: #191922; }
+#enter:hover { background: var(--accent); }
+#quiet { background: transparent; min-height: 44px; border: 0; padding: 7px 0; font-size: .875rem; color: var(--soft); }
+.rooms {
+  position: absolute;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  display: flex;
+  padding: 0 3px;
+  background: #11131bcc;
+  border-top: 1px solid #ffffff25;
+}
+.rooms button[aria-current="true"] { color: white; box-shadow: inset 0 2px var(--accent); }
+.rooms button:disabled { opacity: .46; cursor: default; }
+.plaque {
+  position: absolute;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(75px, calc(env(safe-area-inset-bottom) + 62px));
+  width: min(245px, calc(100% - 36px));
+  padding: 8px 10px;
+  background: #101219ba;
+  border-left: 1px solid #d4dfed87;
+  pointer-events: none;
+}
+.plaque span { display: block; font-size: .75rem; color: var(--accent); }
+.plaque h2 { font: 600 .92rem/1.45 system-ui, sans-serif; margin: 2px 0; }
+.plaque p { font-size: .78rem; line-height: 1.5; color: var(--soft); margin: 3px 0 0; }
+.aim { position: absolute; left: calc(50% - 2px); top: calc(50% - 2px); width: 4px; height: 4px; border-radius: 50%; background: #fff9; pointer-events: none; }
+#dream-accent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  gap: .32em .66em;
+  padding: 0 10vw 4vh;
+  color: #f6f1e4;
+  mix-blend-mode: difference;
+  font: 600 clamp(2.3rem, 8.9vw, 8.1rem)/1.18 "Yu Mincho", "Hiragino Mincho ProN", serif;
+  letter-spacing: .018em;
+  pointer-events: none;
+}
+#dream-accent[data-multiple="true"] { font-size: clamp(1.55rem, 5.6vw, 4.2rem); }
+#dream-accent span { white-space: nowrap; }
+.controls { position: absolute; bottom: max(20px, env(safe-area-inset-bottom)); left: max(18px, env(safe-area-inset-left)); pointer-events: none; }
+.help { margin: 0; color: var(--ink); font-size: .75rem; text-shadow: 0 1px 3px black; }
+.touch, #stick { display: none; }
+.fallback { position: absolute; inset: 68px 0 0; overflow: auto; background: #15161c; padding: 18px; }
+.fallback img { display: block; width: min(100%, 640px); margin: 14px auto; }
+@media (pointer: coarse), (max-width: 600px) {
+  #stick { position: relative; display: grid; place-items: center; width: 76px; height: 76px; border-radius: 50%; border: 1px solid #d9ddeb7a; background: #10111e42; touch-action: none; pointer-events: auto; margin-bottom: 9px; }
+  #stick i { position: absolute; width: 29px; height: 29px; border-radius: 50%; border: 1px solid #dfe7f287; background: #d9ddeb38; transform: translate(var(--x, 0px), var(--y, 0px)); pointer-events: none; }
+  .touch { display: inline; }
+  .keyboard { display: none; }
+  .help { max-width: 94px; }
+}
+@media (max-width: 600px) {
+  .entry { background: linear-gradient(0deg, #10111bd9, #11131f26 53%, transparent); }
+  .rooms button { padding-inline: 8px; }
+  .plaque { bottom: max(129px, calc(env(safe-area-inset-bottom) + 104px)); }
+}
+@media (max-width: 350px) {
+  .rooms button { padding-inline: 6px; font-size: .8rem; }
+}

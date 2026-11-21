@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#121419">
+  <meta name="description" content="Dear Adolescence / Goodbye, Blue の映像から生まれた、歩いて見る小さな美術館。">
+  <title>消失標本室 — Dear Adolescence / Goodbye, Blue</title>
+  <link rel="stylesheet" href="./museum.css?v=mv-projection">
+</head>
+<body>
+  <main id="museum">
+    <canvas id="view" aria-label="一人称で巡る消失標本室" tabindex="0"></canvas>
+    <div class="mast">
+      <a class="wordmark" href="./" aria-label="消失標本室の入口">消失標本室</a>
+      <div class="settings">
+        <button id="captions" type="button" aria-pressed="false" hidden>解説</button>
+        <button id="sound" type="button" aria-pressed="false">音を再生</button>
+      </div>
+    </div>
+    <section class="entry" id="entry" aria-labelledby="title">
+      <h1 id="title">Dear Adolescence<br>Goodbye, Blue</h1>
+      <button type="button" id="enter">音とともに入る</button>
+      <button type="button" id="quiet">無音で入る</button>
+    </section>
+    <section class="fallback" id="fallback" hidden>
+      <p>このブラウザでは3D表示が使えません。代表作品をここで見られます。</p>
+      <img data-src="./heel.jpg" alt="鋭いヒールを描いた巨大な印刷物">
+      <img data-src="./hologram.webp" alt="透明トルソーの図版">
+      <img data-src="./coast.jpg" alt="海辺に展示した絵の一覧">
+    </section>
+    <nav class="rooms" id="rooms" aria-label="展示室へ移動" hidden>
+      <button type="button" data-room="0">身体性</button>
+      <button type="button" data-room="1">身体の不在</button>
+      <button type="button" data-room="2" title="終盤に開きます" disabled>波打ち際</button>
+    </nav>
+    <div class="aim" id="aim" aria-hidden="true" hidden></div>
+    <div id="dream-accent" aria-hidden="true" hidden></div>
+    <section class="plaque" id="plaque" aria-live="polite" hidden>
+      <span id="medium"></span><h2 id="object"></h2><p id="note"></p>
+    </section>
+    <div class="controls" id="controls" hidden>
+      <div id="stick" aria-label="左のパッドで移動"><i></i></div>
+      <p class="help"><span class="touch">左で移動 ／ 画面をなぞって視点</span><span class="keyboard">WASDで移動 ／ ドラッグで視点</span></p>
+    </div>
+    <audio id="music" src="./soundtrack-261122.mp3" preload="none"></audio>
+    <video id="reel" muted loop playsinline preload="none" hidden></video>
+  </main>
+  <script type="module" src="./museum.js?v=261122"></script>
+</body>
+</html>
